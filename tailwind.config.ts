@@ -62,6 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				blockchain: {
+					primary: 'hsl(var(--blockchain-primary))',
+					secondary: 'hsl(var(--blockchain-secondary))',
+					accent: 'hsl(var(--blockchain-accent))',
+					success: 'hsl(var(--blockchain-success))',
+					warning: 'hsl(var(--blockchain-warning))',
+					error: 'hsl(var(--blockchain-error))',
+					dark: 'hsl(var(--blockchain-dark))',
 				}
 			},
 			borderRadius: {
@@ -105,6 +114,10 @@ export default {
 				'blur-in': {
 					from: { filter: 'blur(4px)', opacity: '0' },
 					to: { filter: 'blur(0)', opacity: '1' }
+				},
+				'pulse-blue': {
+					'0%, 100%': { boxShadow: '0 0 0 0 rgba(59, 130, 246, 0.5)' },
+					'50%': { boxShadow: '0 0 0 10px rgba(59, 130, 246, 0)' }
 				}
 			},
 			animation: {
@@ -116,7 +129,8 @@ export default {
 				'slide-down': 'slide-down 0.3s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'scale-out': 'scale-out 0.2s ease-in',
-				'blur-in': 'blur-in 0.3s ease-out'
+				'blur-in': 'blur-in 0.3s ease-out',
+				'pulse-blue': 'pulse-blue 2s infinite'
 			},
 			fontFamily: {
 				sans: [
@@ -127,11 +141,22 @@ export default {
 					'Roboto',
 					'Helvetica Neue',
 					'sans-serif'
+				],
+				mono: [
+					'ui-monospace',
+					'SFMono-Regular',
+					'Menlo',
+					'Monaco',
+					'Consolas',
+					'Liberation Mono',
+					'Courier New',
+					'monospace'
 				]
 			},
 			boxShadow: {
 				'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
-				'glass-hover': '0 8px 32px rgba(0, 0, 0, 0.15)'
+				'glass-hover': '0 8px 32px rgba(0, 0, 0, 0.15)',
+				'blockchain': '0 0 15px rgba(59, 130, 246, 0.5)'
 			}
 		}
 	},

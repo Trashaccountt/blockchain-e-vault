@@ -1,69 +1,96 @@
-# Welcome to your Lovable project
 
-## Project info
+# Blockchain Document Sharing System
 
-**URL**: https://lovable.dev/projects/0ff0fd5b-8836-4086-bb74-2e114d0ab53c
+This project enables secure document sharing using blockchain, IPFS, and MongoDB with a focus on security.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Blockchain-Based Document Ownership & Sharing**
+  - Store document metadata and ownership on Ethereum (Sepolia testnet)
+  - Grant, track and revoke document access via smart contracts
+  - Document authenticity verification
 
-**Use Lovable**
+- **End-to-End Encrypted Document Storage**
+  - AES-256 encryption for all documents
+  - IPFS decentralized storage
+  - Secure key management
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0ff0fd5b-8836-4086-bb74-2e114d0ab53c) and start prompting.
+- **Comprehensive Security**
+  - JWT-based authentication
+  - Role-based access control (User/Admin)
+  - Access expiration & revocation
+  - Activity logging for security auditing
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Gasless Transactions via OpenGSN**
+  - Fee-free document sharing on blockchain
+  - Transparent to end users
 
-**Use your preferred IDE**
+## Setup & Running
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Environment Variables
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Create a `.env` file in your root directory with the following values:
 
-Follow these steps:
+```
+# Blockchain Configuration
+PRIVATE_KEY=your_private_key
+INFURA_RPC_URL=https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID
+CONTRACT_ADDRESS=your_deployed_contract_address
+OPEN_GSN_PAYMASTER=your_paymaster_address
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Database Configuration
+MONGODB_URI=your_mongodb_connection_string
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# IPFS (Infura) Configuration
+VITE_INFURA_IPFS_PROJECT_ID=your_ipfs_project_id
+VITE_INFURA_IPFS_PROJECT_SECRET=your_ipfs_project_secret
+VITE_INFURA_IPFS_ENDPOINT=https://ipfs.infura.io:5001
 
-# Step 3: Install the necessary dependencies.
-npm i
+# JWT Secret (Authentication)
+JWT_SECRET=your_jwt_secret
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Running the Backend
+
+```bash
+# Install dependencies
+npm install
+
+# Start the Express server (typically runs on port 5000)
+node src/server/index.js
+
+# In a separate terminal, start the frontend
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### API Endpoints
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**Authentication**
+- `POST /api/auth/signup` - Register a new user
+- `POST /api/auth/login` - User login
+- `GET /api/auth/me` - Get current user
 
-**Use GitHub Codespaces**
+**Documents**
+- `POST /api/documents/upload` - Upload a document
+- `GET /api/documents` - Get all documents for current user
+- `GET /api/documents/:id` - Get specific document
+- `GET /api/documents/:id/download` - Download document
+- `POST /api/documents/:id/share` - Share document with another user
+- `POST /api/documents/:id/revoke` - Revoke access
+- `DELETE /api/documents/:id` - Delete document
+- `GET /api/documents/:id/logs` - Get activity logs for document
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Smart Contract Architecture
 
-## What technologies are used for this project?
+The system interacts with a document registry smart contract deployed on the Ethereum Sepolia testnet. The contract maintains:
 
-This project is built with .
+- Document ownership records
+- Access control permissions
+- Document metadata hashes
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Security Considerations
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0ff0fd5b-8836-4086-bb74-2e114d0ab53c) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- All documents are encrypted before being stored on IPFS
+- Encryption keys are stored securely in MongoDB
+- JWT tokens are used for authentication
+- Role-based permissions protect sensitive operations
