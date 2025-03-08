@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -8,8 +7,17 @@ import Footer from '@/components/layout/Footer';
 import { useAuth } from '@/context/AuthContext';
 import { Document, getDocumentsFromBlockchain, formatFileSize, shareDocument, revokeAccess } from '@/utils/blockchain';
 import GlassCard from '@/components/ui/GlassCard';
-import { FileText, Search, Share2, Eye, Download, Link2, Shield, User, ExternalLink, Copy, Upload } from 'lucide-react';
+import { FileText, Search, Share2, Eye, Download, Link2, Shield, User, ExternalLink, Upload, Copy as CopyIcon } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Dialog,
   DialogContent,
@@ -432,7 +440,7 @@ const DetailItem = ({ label, value, isHash = false }: { label: string; value?: s
             }}
             title="Copy to clipboard"
           >
-            <Copy className="h-3.5 w-3.5" />
+            <CopyIcon className="h-3.5 w-3.5" />
           </button>
         )}
       </div>
