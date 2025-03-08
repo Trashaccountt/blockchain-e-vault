@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Navbar from '@/components/layout/Navbar';
@@ -8,7 +8,7 @@ import Footer from '@/components/layout/Footer';
 import { useAuth } from '@/context/AuthContext';
 import { Document, getDocumentsFromBlockchain, formatFileSize, shareDocument, revokeAccess } from '@/utils/blockchain';
 import GlassCard from '@/components/ui/GlassCard';
-import { FileText, Search, Share2, Eye, Download, Link2, Shield, User, ExternalLink } from 'lucide-react';
+import { FileText, Search, Share2, Eye, Download, Link2, Shield, User, ExternalLink, Copy, Upload } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import {
   Dialog,
